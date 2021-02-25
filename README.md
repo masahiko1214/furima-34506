@@ -2,15 +2,15 @@
 
 ## users テーブル
 
-| Column                  | Type   | Options     |
-| ----------------------- | ------ | ----------- |
-| name                    | string | null: false |
-| email                   | string | null: false |
-| password                | string | null: false |
-| first_name              | string | null: false |
-| last_name               | string | null: false |
-| first_name_okurigana    | string | null: false |
-| last_name_okurigana     | string | null: false |
+| Column                  | Type   | Options                     |
+| ----------------------- | ------ | --------------------------- |
+| name                    | string | null: false                 |
+| email                   | string | null: false,unique: true    |
+| password                | string | null: false                 |
+| first_name              | string | null: false                 |
+| last_name               | string | null: false                 |
+| first_name_okurigana    | string | null: false                 |
+| last_name_okurigana     | string | null: false                 |
 
 ### Association
 
@@ -20,18 +20,18 @@
 
 ## item テーブル
 
-| Column                  | Type           | Options     |
-| ----------------------- | -------------- | ----------- |
-| items_name              | string         | null: false |
-| explanation_items       | text           | null: false |
-| user                    | references     | null: false |
-| category                | active_hash    | null: false |
-| condition               | active_hash    | null: false |
-| burden                  | active_hash    | null: false |
-| delivery_area           | active_hash    | null: false |
-| days_to_ship            | active_hash    | null: false |
-| price                   | string         | null: false |
-| image                   | active_storage | null: false |
+| Column                  | Type           | Options                        |
+| ----------------------- | -------------- | ------------------------------ |
+| items_name              | string         | null: false                    |
+| explanation_items       | text           | null: false                    |
+| user                    | references     | null: false, foreign_key: true |
+| category                | active_hash    | null: false                    |
+| condition               | active_hash    | null: false                    |
+| burden                  | active_hash    | null: false                    |
+| delivery_area           | active_hash    | null: false                    |
+| days_to_ship            | active_hash    | null: false                    |
+| price                   | string         | null: false                    |
+| image                   | active_storage | null: false                    |
 
 ### Association
 
@@ -55,14 +55,15 @@
 
 ## shipping_address テーブル
 
-| Column                  | Type           | Options     |
-| ----------------------- | -------------- | ----------- |
-| postal_number           | integer        | null: false |
-| prefectural             | activehash     | null: false |
-| municipality            | string         | null: false |
-| category                | string         | null: false |
-| condition               | string         |             |
-| phone_number            | integer        | null: false |
+| Column                  | Type           | Options          |
+| ----------------------- | -------------- | ---------------- |
+| postal_number           | integer        | null: false      |
+| prefectural             | activehash     | null: false      |
+| municipality            | string         | null: false      |
+| category                | string         | null: false      |
+| condition               | string         |                  |
+| phone_number            | integer        | null: false      |
+| purchase_record         | references     | foreign_key: true|
 
 
 ### Association
