@@ -11,9 +11,7 @@
 | last_name               | string  | null: false                 |
 | first_name_okurigana    | string  | null: false                 |
 | last_name_okurigana     | string  | null: false                 |
-| birthday_year_id        | integer | null: false                 |
-| birthday_month_id       | integer | null: false                 |
-| birthday_day_id         | integer | null: false                 |
+| birthday                | date    | null: false                 |
 
 
 ### Association
@@ -32,9 +30,9 @@
 | category_id             | integer        | null: false                    |
 | condition_id            | integer        | null: false                    |
 | burden_id               | integer        | null: false                    |
-| delivery_area_id        | integer        | null: false                    |
+| prefecture_id           | integer        | null: false                    |
 | days_to_ship_id         | integer        | null: false                    |
-| price                   | string         | null: false                    |
+| price                   | integer        | null: false                    |
 
 ### Association
 
@@ -61,7 +59,7 @@
 | Column                  | Type           | Options          |
 | ----------------------- | -------------- | ---------------- |
 | postal_number           | string         | null: false      |
-| prefectural_id          | integer        | null: false      |
+| prefecture_id           | integer        | null: false      |
 | municipality            | string         | null: false      |
 | category                | string         | null: false      |
 | condition               | string         |                  |
