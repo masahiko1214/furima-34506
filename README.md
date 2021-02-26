@@ -24,8 +24,8 @@
 
 | Column                  | Type           | Options                        |
 | ----------------------- | -------------- | ------------------------------ |
-| items_name              | string         | null: false                    |
-| explanation_items       | text           | null: false                    |
+| name                    | string         | null: false                    |
+| explanation             | text           | null: false                    |
 | user                    | references     | null: false, foreign_key: true |
 | category_id             | integer        | null: false                    |
 | condition_id            | integer        | null: false                    |
@@ -54,7 +54,7 @@
 - has_one    :shipping_address
 
 
-## shipping_address テーブル
+## shipping_addresses テーブル
 
 | Column                  | Type           | Options          |
 | ----------------------- | -------------- | ---------------- |
@@ -63,7 +63,7 @@
 | municipality            | string         | null: false      |
 | category                | string         | null: false      |
 | condition               | string         |                  |
-| phone_number            | integer        | null: false      |
+| phone_number            | string         | null: false      |
 | purchase_record         | references     | foreign_key: true|
 
 
