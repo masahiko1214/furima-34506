@@ -61,8 +61,8 @@
 | postal_number           | string         | null: false      |
 | prefecture_id           | integer        | null: false      |
 | municipality            | string         | null: false      |
-| category                | string         | null: false      |
-| condition               | string         |                  |
+| address                 | string         | null: false      |
+| building_name           | string         |                  |
 | phone_number            | string         | null: false      |
 | purchase_record         | references     | foreign_key: true|
 

@@ -1,4 +1,4 @@
-<mxfile host="65bd71144e" modified="2021-02-26T03:09:34.770Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.1 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="5Od_AiGlbPMg8mdetSAk" version="14.2.4" type="embed">
+<mxfile host="65bd71144e" modified="2021-02-26T03:11:05.752Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.1 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="w0SJNxue1HFWDUn_d1t7" version="14.2.4" type="embed">
     <diagram id="esMEx5bN9DsB9gF7TEje" name="ページ1">
         <mxGraphModel dx="824" dy="631" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
@@ -54,7 +54,7 @@
                 <mxCell id="158" value="prefecture_id・・・integer&#10;" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="156" vertex="1">
                     <mxGeometry y="56" width="250" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="159" value="municipality・・・・ string&#10;&#10;address・・・・・・string&#10;&#10;building_name・・・string&#10;&#10;phone_number・・・integer&#10;&#10;purchase_record・・references" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="156" vertex="1">
+                <mxCell id="159" value="municipality・・・・ string&#10;&#10;address・・・・・・string&#10;&#10;building_name・・・string&#10;&#10;phone_number・・・string&#10;&#10;purchase_record・・references" style="text;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;" parent="156" vertex="1">
                     <mxGeometry y="86" width="250" height="144" as="geometry"/>
                 </mxCell>
                 <mxCell id="160" value="" style="edgeStyle=entityRelationEdgeStyle;fontSize=16;html=1;endArrow=ERoneToMany;entryX=-0.003;entryY=0.292;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.208;exitDx=0;exitDy=0;exitPerimeter=0;jumpSize=6;endSize=28;startSize=28;startArrow=ERone;startFill=0;" parent="1" source="50" target="149" edge="1">
