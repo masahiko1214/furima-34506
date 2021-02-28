@@ -36,6 +36,15 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include "Email can't be blank"
       end
 
+      
+      it 'emailに@が含まれていないと登録できないこと' do
+        @user.email = 'test.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Email is invalid"
+      end
+
+
+
       it '重複したemailが存在する場合登録できない' do
         @user.save
         another_user = FactoryBot.build(:user)
@@ -64,16 +73,46 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
+
+      it 'passwordが半角英字だけでは登録できない' do
+        @user.password = 'mmmmmm'
+        @user.password_confirmation = 'mmmmmm'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
+      it 'passwordが半角数字だけでは登録できない' do
+        @user.password = '000000'
+        @user.password_confirmation = '000000'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
+
+
       it 'ユーザーの本名の名前が空だと登録できない' do
         @user.first_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "First name can't be blank"
       end
 
+      it 'ユーザーの本名の名前が漢字・平仮名・カタカナ以外だと登録できない' do
+        @user.first_name = 'masa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "First name is invalid"
+      end
+
+
       it 'ユーザー本名の名字が空だと登録できない' do
         @user.last_name = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Last name can't be blank"
+      end
+
+      it 'ユーザーの本名の名字が漢字・平仮名・カタカナ以外だと登録できない' do
+        @user.last_name = 'taka'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Last name is invalid"
       end
 
       it 'ユーザーの本名の名前の送り仮名が空だと登録できない' do
@@ -82,10 +121,23 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include "First name okurigana can't be blank"
       end
 
+      it 'ユーザーの本名の名前の送り仮名が全角カタカナ以外だと登録できない' do
+        @user.first_name_okurigana = '正彦'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "First name okurigana is invalid"
+      end
+
+
       it 'ユーザーの本名の名字の送り仮名が空だと登録できない' do
         @user.last_name_okurigana = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Last name okurigana can't be blank"
+      end
+
+      it 'ユーザーの本名の名字の送り仮名が全角カタカナ以外だと登録できない' do
+        @user.last_name_okurigana = '高村'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Last name okurigana is invalid"
       end
 
       it '生年月日が空だと登録できない' do
