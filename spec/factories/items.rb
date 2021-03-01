@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :item do
     name                  { 'test' }
     explanation           { 'testtest' }
-    association :user 
+    association :user
     category_id           { '2' }
     condition_id          { '2' }
     burden_id             { '2' }
