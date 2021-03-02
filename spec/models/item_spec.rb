@@ -12,7 +12,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '商品価格が半角数字であれば出品出来る' do
-        @item.price = 33333
+        @item.price = 33_333
         expect(@item).to be_valid
       end
     end
@@ -35,7 +35,6 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Image can't be blank"
       end
-
 
       it 'ユーザーidが紐づいていなけれは登録できない' do
         @item.user = nil
@@ -109,29 +108,28 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Price can't be blank"
       end
 
-     
       it '商品価格が全角数字では登録できない' do
         @item.price = '３３３３３'
         @item.valid?
-        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)','Price is not a number'
+        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)', 'Price is not a number'
       end
 
       it '商品価格が全角文字では登録できない' do
         @item.price = 'あああああ'
         @item.valid?
-        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)','Price is not a number'
+        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)', 'Price is not a number'
       end
 
       it '商品価格が半角英数混合では登録できない' do
         @item.price = '3m3m3m3m'
         @item.valid?
-        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)','Price is not a number'
+        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)', 'Price is not a number'
       end
 
       it '商品価格が半角英語では登録できない' do
         @item.price = 'mmmmmmm'
         @item.valid?
-        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)','Price is not a number'
+        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)', 'Price is not a number'
       end
 
       it '商品価格が299以下では登録できない' do
@@ -142,7 +140,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '商品価格が10,000,000円以上では登録できない' do
-        @item.price = 11111111
+        @item.price = 11_111_111
         @item.valid?
         expect(@item.errors.full_messages).to include 'Price must be less than 10000000'
       end

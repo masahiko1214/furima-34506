@@ -5,7 +5,7 @@ class Item < ApplicationRecord
     validates :user
     validates :image
     with_options length: { minimum: 3, maxinum: 7 }, numericality: { only_integer: true,
-                                                                                                     greater_than_or_equal_to: 300, less_than: 10_000_000 } do
+                                                                     greater_than_or_equal_to: 300, less_than: 10_000_000 } do
       validates :price
     end
   end
