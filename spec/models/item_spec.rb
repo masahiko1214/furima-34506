@@ -11,8 +11,8 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
 
-      it '商品価格が半角英数字であれば出品出来る' do
-        @item.price = '33333'
+      it '商品価格が半角数字であれば出品出来る' do
+        @item.price = 33333
         expect(@item).to be_valid
       end
     end
@@ -30,6 +30,13 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Explanation can't be blank"
       end
 
+      it '画像が空では登録できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Image can't be blank"
+      end
+
+
       it 'ユーザーidが紐づいていなけれは登録できない' do
         @item.user = nil
         @item.valid?
@@ -43,7 +50,7 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリーにおいて1を選ぶと登録できない' do
-        @item.category_id = '1'
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include 'Category must be other than 1'
       end
@@ -55,7 +62,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '商品状態において1を選ぶと登録できない' do
-        @item.condition_id = '1'
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include 'Condition must be other than 1'
       end
@@ -67,7 +74,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '送料負担において1を選ぶと登録できない' do
-        @item.burden_id = '1'
+        @item.burden_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include 'Burden must be other than 1'
       end
@@ -79,7 +86,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '配送元地域において1を選ぶと登録できない' do
-        @item.prefecture_id = '1'
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include 'Prefecture must be other than 1'
       end
@@ -91,7 +98,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '配送日数において1を選ぶと登録できない' do
-        @item.days_to_ship_id = '1'
+        @item.days_to_ship_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include 'Days to ship must be other than 1'
       end
@@ -102,21 +109,40 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Price can't be blank"
       end
 
-      it '商品価格が半角数字以外では登録できない' do
+     
+      it '商品価格が全角数字では登録できない' do
         @item.price = '３３３３３'
         @item.valid?
-        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)', 'Price is not a number'
+        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)','Price is not a number'
       end
 
-      it '商品価格が2文字以下では登録できない' do
-        @item.price = '22'
+      it '商品価格が全角文字では登録できない' do
+        @item.price = 'あああああ'
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)','Price is not a number'
+      end
+
+      it '商品価格が半角英数混合では登録できない' do
+        @item.price = '3m3m3m3m'
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)','Price is not a number'
+      end
+
+      it '商品価格が半角英語では登録できない' do
+        @item.price = 'mmmmmmm'
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)','Price is not a number'
+      end
+
+      it '商品価格が299以下では登録できない' do
+        @item.price = 22
         @item.valid?
         expect(@item.errors.full_messages).to include 'Price is too short (minimum is 3 characters)',
                                                       'Price must be greater than or equal to 300'
       end
 
-      it '商品価格が8文字以上では登録できない' do
-        @item.price = '11111111'
+      it '商品価格が10,000,000円以上では登録できない' do
+        @item.price = 11111111
         @item.valid?
         expect(@item.errors.full_messages).to include 'Price must be less than 10000000'
       end
