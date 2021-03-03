@@ -23,40 +23,29 @@ class ItemsController < ApplicationController
   def show
   end
 
-
   def edit
-
   end
 
   def update
-
-     if  @item.update(item_params)
+    if @item.update(item_params)
       redirect_to item_path(@item.id)
 
-     else
+    else
 
       render :edit
 
-     end
-
+    end
   end
-
-
-
 
   private
 
-  def  move_to_index
-    unless user_signed_in? && current_user.id == @item.user_id
-      redirect_to action: :index
-    end
+  def move_to_index
+    redirect_to action: :index unless user_signed_in? && current_user.id == @item.user_id
   end
- 
-  
-def set_item
-  @item = Item.find(params[:id])
-end
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   def item_params
     params.require(:item).permit(:name, :explanation, :text, :category_id, :condition_id, :burden_id, :prefecture_id,
