@@ -4,7 +4,7 @@ class OrderShippingAddress
   # ここにバリデーションの処理を書く
 
   with_options presence: true do
-    validates :price
+
     validates :postal_number,  format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
     validates :user_id
     validates :item_id
