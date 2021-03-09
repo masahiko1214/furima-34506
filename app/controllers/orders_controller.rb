@@ -1,12 +1,9 @@
 class OrdersController < ApplicationController
-  before_action :set_item, only: [:index, :create]
+  before_action :set_item_id, only: [:index, :create]
+  before_action :move_to_index_or_sign_in, only: [:index, :create]
 
   def index
     @order_shipping_address = OrderShippingAddress.new
-
-    unless user_signed_in? && current_user.id != @item.user.id      #  ログインしていない方や出品者は直接RLを入力されても前者はログインページに、後者はトップページに返す機能です
-      redirect_to new_user_session_path
-    end
 
     redirect_to root_path if @item.order.present? # 購入されていたら直接URLを入力されてもトップページに返す機能です
   end
@@ -25,8 +22,14 @@ class OrdersController < ApplicationController
 
   private
 
-  def set_item
-    @item = Item.find(params[:id])
+  def set_item_id
+    @item = Item.find(params[:item_id])
+  end
+
+  def move_to_index_or_sign_in
+    unless user_signed_in? && current_user.id != @item.user.id      #  ログインしていない方や出品者は直接URLを入力されても前者はログインページに、後者はトップページに返す機能です
+      redirect_to new_user_session_path
+    end
   end
 
   def pay_item
