@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
+  before_action :set_item, only: [:index, :create]
+
   def index
-    @item = Item.find(params[:item_id])
     @order_shipping_address = OrderShippingAddress.new
 
     unless user_signed_in? && current_user.id != @item.user.id      #  ログインしていない方や出品者は直接RLを入力されても前者はログインページに、後者はトップページに返す機能です
@@ -11,7 +12,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_shipping_address = OrderShippingAddress.new(order_params)
 
     if @order_shipping_address.valid?
@@ -24,6 +24,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY']
