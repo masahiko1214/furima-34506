@@ -43,6 +43,14 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    def search
+      @items = Item.search(params[:keyword])
+    end
+  end
+
+
+
   private
 
   def move_to_index
