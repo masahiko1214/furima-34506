@@ -44,9 +44,7 @@ class ItemsController < ApplicationController
   end
 
   def search
-    def search
       @items = Item.search(params[:keyword])
-    end
   end
 
 
